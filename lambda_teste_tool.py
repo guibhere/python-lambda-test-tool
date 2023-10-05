@@ -4,6 +4,8 @@ import sys
 import tkinter as tk
 from tkinter import filedialog
 
+from lambda_context_mock import lambda_context
+
 print("Ferramente de teste para lambda local")
 def main(args):
     print("Argumentos",args)
@@ -42,19 +44,6 @@ def import_lambda(file_path,handler):
 
     spec.loader.exec_module(module)
     return module
-
-def lambda_context():
-    class LambdaContext:
-        def __init__(self):
-            self.function_name = "test-func"
-            self.memory_limit_in_mb = 128
-            self.invoked_function_arn = "arn:aws:lambda:eu-west-1:809313241234:function:test-func"
-            self.aws_request_id = "52fdfc07-2182-154f-163f-5f0f9a621d72"
-
-        def get_remaining_time_in_millis(self) -> int:
-            return 1000
-
-    return LambdaContext()
 
 def start(args):
     root = tk.Tk()

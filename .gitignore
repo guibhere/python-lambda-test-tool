@@ -2,3 +2,8 @@ __pycache__/lambda_teste_tool.cpython-311.pyc
 __pycache__/UI_functions.cpython-311.pyc
 __pycache__/UI_logger.cpython-311.pyc
 .vscode/launch.json
+__pycache__/dependency_installer.cpython-311.pyc
+__pycache__/install_dependencies.cpython-311.pyc
+__pycache__/UI_lambda_test_tool_cs.cpython-311.pyc
+__pycache__/UI_lambda_test_tool.cpython-311.pyc
+__pycache__/lambda_context_mock.cpython-311.pyc

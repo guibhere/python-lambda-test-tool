@@ -5,6 +5,7 @@ import json
 from UI_functions import JsonFileManager, DirectoryManager
 from UI_logger import OutputRedirector
 import lambda_teste_tool
+from dependency_installer import DependencyInstaller
 
 global args
 args = sys.argv[1:]
@@ -12,6 +13,8 @@ args = sys.argv[1:]
 if not args:
     args = ["", "", "", "E:/Projetos/python-serverless-api/serverless-api/src/", ""]
 
+dep_installer = DependencyInstaller(args[3] + "requirements.txt")
+    
 # Create the main application window
 app = tk.Tk()
 app.title("Python Lambda Test Tool")
@@ -51,8 +54,6 @@ small_text_frame.add(small_text_box2)
 small_text_box2.insert(tk.END, args[1])
 
 # Seleção de evento
-
-
 def selecionar_evento(evento):
     opcao = combo_var.get()
     json_file_manager.open_json_file_selection(dir=args[2], file_name=opcao)
@@ -85,6 +86,8 @@ file_menu.add_command(
                                            dir_manager.set_combobox_value(combobox, args[2])))
 file_menu.add_command(
     label="Selecionar diretorio de eventos", command=lambda: dir_manager.select_event_dir(combobox))
+file_menu.add_command(
+    label="Instalar dependencias do projeto (requirements.txt)", command=lambda: dep_installer.InstalarDependenciasNovasRequirements())
 # Create a label widget
 label = tk.Label(app, text="Edit JSON:")
 label.pack()
