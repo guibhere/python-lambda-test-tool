@@ -9,3 +9,10 @@ class OutputRedirector(io.TextIOBase):
     def write(self, string):
         self.text_widget.insert(tk.END, string)
         self.text_widget.see(tk.END)  # Scroll to the end
+        
+class OutputRedirectorQt(io.TextIOBase):
+    def __init__(self, logger):
+        self.logger = logger
+
+    def write(self, string):
+        self.logger.append(string)

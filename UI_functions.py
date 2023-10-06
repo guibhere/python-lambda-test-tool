@@ -33,6 +33,13 @@ class JsonFileManager:
                 json_text = file.read()
             self.text_box.delete("1.0", tk.END)
             self.text_box.insert(tk.END, json_text)
+    
+    def read_json_file(self,dir,file_name):
+        file_path = os.path.join(dir,file_name)
+        if file_path:
+            with open(file_path, 'r') as file:
+                json_text = file.read()
+        return json_text
 
 
 class DirectoryManager:
@@ -55,8 +62,13 @@ class DirectoryManager:
         combo_box["values"]= self.list_json_files(dir)
         
     def list_json_files(self, dir):
-        json_files = []
-        for filename in os.listdir(dir):
-            if filename.endswith(".json"):
-                json_files.append(filename)
-        return json_files
+        try:
+            json_files = []
+            for filename in os.listdir(dir):
+                if filename.endswith(".json"):
+                    json_files.append(filename)
+            return json_files
+        except Exception as e:
+            print("Não foi possivel encontrar o diretorio")
+            return json_files
+            

@@ -7,3 +7,6 @@ __pycache__/install_dependencies.cpython-311.pyc
 __pycache__/UI_lambda_test_tool_cs.cpython-311.pyc
 __pycache__/UI_lambda_test_tool.cpython-311.pyc
 __pycache__/lambda_context_mock.cpython-311.pyc
+*.sqlite
+*.pyc
+*.vsidx
