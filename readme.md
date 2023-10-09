@@ -7,7 +7,7 @@ Aplicação para facilitar os testes e debugging de aplicações AWS Lambda em P
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Instalação](#instalação)
-
+  - [Uso](#uso)
 ## Features
 
 - Menu File:
@@ -21,6 +21,8 @@ Aplicação para facilitar os testes e debugging de aplicações AWS Lambda em P
   - Selecionar diretorio raiz: Selecione um diretorio raiz, para que a ferramente consiga encontrar dependencias locais. Valor inicial definido pelo quarto argumento no launch.json.
   - Invocar lambda: Invoca a aplicação lambda de acordo com as configurações definidas.
 ## Instalação
+
+Clonar/Copiar a ferramenta de testes para um repositorio qualquer em sua maquina.
 
 Instalar dependencias [requirements.txt](requirements.txt):
 
@@ -65,3 +67,20 @@ Significado dos parametros:
 | args[2]   | argumento | Path do diretorio onde se encontros os payloads em json para teste. Eg: **.../src/events** |
 | args[3]   | argumento  | Path do diretorio onde se encontra a raiz do projeto, necessario para que a ferramenta consiga acessar as dependencias locais do projeto, normalmente é o propio diretorio da classe de entrypoint da aplicação lambda. Eg: **.../src/**|
 | args[4]   | argumento  | Argumento opcional para debuggar a aplicação lambda sem a UI  |
+
+## Uso
+Após ajustar o launch.json do projeto que voce quer testar, basta executar pelo menu de debug o perfil que voce configurou no lauch.json(F5 no vscode).
+- Exemplo de launch.json:
+ 
+![Alt text](images/launchjson.png)
+- Menu Debug:
+
+![Alt text](images/debug.png)
+
+- A tela então aparecera, basta preencher os campos de acordo com as seções anteriores e invocar sua lambda atraves do botão:
+
+![Alt text](images/tela.png)
+
+- Por fim, o resultado da execução, juntamente com os logs, serão apresentados na textbox Logger:
+  
+![Alt text](images/resultado.png)
