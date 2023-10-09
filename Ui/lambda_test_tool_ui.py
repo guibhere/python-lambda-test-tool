@@ -112,6 +112,7 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName("label_3")
         self._2.addWidget(self.label_3, 3, 0, 1, 1)
         self.select_dep_dir_pushButton = QtWidgets.QPushButton(self.config_groupBox)
+        self.select_dep_dir_pushButton.setMinimumSize(QtCore.QSize(0, 32))
         self.select_dep_dir_pushButton.setObjectName("select_dep_dir_pushButton")
         self._2.addWidget(self.select_dep_dir_pushButton, 1, 2, 1, 1)
         self.app_path_textEdit = QtWidgets.QTextEdit(self.config_groupBox)
