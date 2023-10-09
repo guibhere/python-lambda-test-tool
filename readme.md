@@ -3,28 +3,34 @@
 Aplicação para facilitar os testes e debugging de aplicações AWS Lambda em Python.
 
 ## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
+- [Python Lambda Test Tool](#python-lambda-test-tool)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Instalação](#instalação)
 
 ## Features
 
-List the key features and functionalities of your application:
+- Menu File:
+  - Abrir Json: Carrega o conteudo de um arquivo .json para ser utilizado como payload na invocação da lambda.
+  - Salvar Json: Grava o conteudo da caixa de texto de eventos para um arquivo .json selecionado.
+  - Selecionar diretorio de eventos: Seleciona um diretorio de onde serão carregados eventos no formato .json, todos os arquivos .json da localização serão selecionaveis no combobox de eventos. 
+  O diretorio de eventos inicial é determinado pelo terceiro argumento do launch.json.
+  - Instalar dependencias do projeto: Selecione um arquivo do tipo "requirements.txt" para instalar todas as dependencias listadas do seu projeto lambda.
+- Botões:
+  - Selecionar lambda function: Selecione um classe python que serve de entrypoint para sua lambda. Valor inicial definido pelo primeiro agumentos no launch.json.
+  - Selecionar diretorio raiz: Selecione um diretorio raiz, para que a ferramente consiga encontrar dependencias locais. Valor inicial definido pelo quarto argumento no launch.json.
+  - Invocar lambda: Invoca a aplicação lambda de acordo com as configurações definidas.
+## Instalação
 
-- Feature 1: Description.
-- Feature 2: Description.
-- ...
-
-## Installation
-
-Instalar dependencias `[requirements.txt](requirements.txt)`:
+Instalar dependencias [requirements.txt](requirements.txt):
 
 ```bash
 pip install -r requirements.txt
 ```
+
+No VsCode, configurar ou adicionar no projeto lambda a ser testado o seguinte launch.json¹:
+
+![Alt texdasdat](images/image.png)
 
 ```json
 {
@@ -48,3 +54,14 @@ pip install -r requirements.txt
     ]
 }
 ```
+
+Significado dos parametros:
+
+| Parametro | Tipo | Descrição |
+|-----------------|-----------------|-----------------|
+| program   | program  | Caminho da classe principal da ferramenta de testes: **lambda_test_tool_main.py**  |
+| args[0]   | argumento  | Path da classe entrypoint da aplicação lambda Eg: **hanlder.py**  |
+| args[1]   | argumento  | Nome do metódo handler na classe de entrypoint da aplicação lambda. Eg: **lambda_handler**  |
+| args[2]   | argumento | Path do diretorio onde se encontros os payloads em json para teste. Eg: **.../src/events** |
+| args[3]   | argumento  | Path do diretorio onde se encontra a raiz do projeto, necessario para que a ferramenta consiga acessar as dependencias locais do projeto, normalmente é o propio diretorio da classe de entrypoint da aplicação lambda. Eg: **.../src/**|
+| args[4]   | argumento  | Argumento opcional para debuggar a aplicação lambda sem a UI  |
