@@ -113,6 +113,9 @@
          </item>
          <item row="0" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
           <widget class="QLabel" name="label">
+           <property name="toolTip">
+            <string>Localização do entrypoint da aplicação lambda.</string>
+           </property>
            <property name="text">
             <string>Aplicação Lambda: </string>
            </property>
@@ -139,7 +142,7 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>Caminho para o diretorio da raiz de dependencias do projeto</string>
+            <string>Caminho para o diretorio da raiz de dependencias do projeto.</string>
            </property>
            <property name="text">
             <string>Raiz das dependencias:</string>
@@ -166,6 +169,9 @@
              <height>24</height>
             </size>
            </property>
+           <property name="toolTip">
+            <string>Caminho para o diretorio da raiz de dependencias do projeto.</string>
+           </property>
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustIgnored</enum>
            </property>
@@ -184,6 +190,9 @@
              <width>300</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="toolTip">
+            <string>Payload/evento com o qual a lambda será invocada.</string>
            </property>
           </widget>
          </item>
@@ -218,6 +227,9 @@
            <property name="contextMenuPolicy">
             <enum>Qt::NoContextMenu</enum>
            </property>
+           <property name="toolTip">
+            <string>Nome do método handler da aplicação.</string>
+           </property>
            <property name="layoutDirection">
             <enum>Qt::LeftToRight</enum>
            </property>
@@ -231,6 +243,9 @@
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_2">
+           <property name="toolTip">
+            <string>Nome do método handler da aplicação.</string>
+           </property>
            <property name="text">
             <string>Lambda Handler:</string>
            </property>
@@ -238,6 +253,9 @@
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_3">
+           <property name="toolTip">
+            <string>Payload/evento com o qual a lambda será invocada.</string>
+           </property>
            <property name="text">
             <string>Selecionar evento:</string>
            </property>
@@ -376,6 +394,9 @@ p, li { white-space: pre-wrap; }
        </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="invoke_lambda_pushButton">
+         <property name="toolTip">
+          <string>Invocar a lambda de acordo com as definições.</string>
+         </property>
          <property name="text">
           <string>Invocar Lambda</string>
          </property>
