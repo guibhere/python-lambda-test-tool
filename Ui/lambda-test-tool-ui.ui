@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>896</width>
-    <height>665</height>
+    <width>1264</width>
+    <height>668</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -36,6 +36,9 @@
     <bool>false</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,9,5" rowminimumheight="0,0,0">
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
     <item row="0" column="0" alignment="Qt::AlignTop">
      <widget class="QGroupBox" name="config_groupBox">
       <property name="layoutDirection">
@@ -48,8 +51,23 @@
        <string>Configurações</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>2</number>
+       </property>
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
        <item>
-        <layout class="QGridLayout" name="_2" rowstretch="0,0,0" columnstretch="0,9,0">
+        <layout class="QGridLayout" name="_2" rowstretch="0,0,0,0" columnstretch="0,9,0">
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
@@ -65,6 +83,64 @@
          <property name="spacing">
           <number>2</number>
          </property>
+         <item row="1" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Lambda Handler:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QComboBox" name="evento_comboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Selecionar evento:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QLabel" name="label_4">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>999</width>
+             <height>999</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Caminho para o diretorio da raiz de dependencias do projeto</string>
+           </property>
+           <property name="text">
+            <string>Raiz das dependencias:</string>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
           <widget class="QPlainTextEdit" name="handler_name_textEdit">
            <property name="enabled">
@@ -107,33 +183,62 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QComboBox" name="evento_comboBox">
+         <item row="0" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QTextEdit" name="app_path_textEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
-             <width>300</width>
+             <width>360</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>1980</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
-          </widget>
-         </item>
-         <item row="1" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Lambda Handler</string>
+           <property name="font">
+            <font>
+             <pointsize>7</pointsize>
+            </font>
            </property>
-          </widget>
-         </item>
-         <item row="2" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Selecionar evento</string>
+           <property name="toolTip">
+            <string>Localização do entrypoint da aplicação lambda.</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAsNeeded</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAsNeeded</enum>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QAbstractScrollArea::AdjustIgnored</enum>
+           </property>
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -165,10 +270,17 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QTextEdit" name="app_path_textEdit">
+         <item row="0" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Aplicação Lambda: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QPlainTextEdit" name="dep_path_TextEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -181,36 +293,19 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>0</width>
-             <height>0</height>
+             <width>9464646</width>
+             <height>24</height>
             </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>7</pointsize>
-            </font>
-           </property>
-           <property name="toolTip">
-            <string>Localização do entrypoint da aplicação lambda.</string>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
            </property>
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustIgnored</enum>
            </property>
           </widget>
          </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label">
+         <item row="3" column="2">
+          <widget class="QPushButton" name="select_dep_dir_pushButton">
            <property name="text">
-            <string>Aplicação Lambda: </string>
+            <string>Selecionar diretorio raiz</string>
            </property>
           </widget>
          </item>
@@ -290,7 +385,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>896</width>
+     <width>1264</width>
      <height>21</height>
     </rect>
    </property>

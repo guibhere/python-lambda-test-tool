@@ -14,13 +14,20 @@ class UI_Funcionalidades:
         self.file_helper = File_Helper()
         self.args = args
         self.event_dir = args[2]
-
-        self.ui.app_path_textEdit.setText(args[0])
-        self.ui.handler_name_textEdit.setPlainText(args[1])
+        self.dep_dir = args[3]
+        
+        self.init_values()
+        self.connect_actions()
+        
+    def init_values(self):
+        self.ui.app_path_textEdit.setText(self.args[0])
+        self.ui.handler_name_textEdit.setPlainText(self.args[1])
         self.ui.evento_comboBox.addItems(
             self.file_helper.list_json_files(self.event_dir)
         )
+        self.ui.dep_path_TextEdit.setPlainText(self.dep_dir)
 
+    def connect_actions(self):
         self.ui.select_lambda_pushButton.clicked.connect(self.selecionar_lambda)
         self.ui.actionSelecionar_diretorio_de_eventos.triggered.connect(
             self.selecionar_diretorio_eventos
@@ -31,6 +38,9 @@ class UI_Funcionalidades:
         self.ui.invoke_lambda_pushButton.clicked.connect(self.invoke_lambda)
         self.ui.actionInstalar_dependencias_do_projeto_requirements_txt.triggered.connect(
             self.instalar_dependencias
+        )
+        self.ui.select_dep_dir_pushButton.clicked.connect(
+            self.selecionar_dir_raiz_dependencias
         )
 
     def selecionar_lambda(self):
@@ -76,7 +86,7 @@ class UI_Funcionalidades:
             params.append(self.ui.app_path_textEdit.toPlainText().strip())
             params.append(self.ui.handler_name_textEdit.toPlainText().strip())
             params.append(json.dumps(parsed_json))
-            params.append(self.args[3])
+            params.append(self.ui.dep_path_TextEdit.toPlainText().strip())
             params.append("ui")
 
             lambda_teste_tool.start(params)
@@ -86,3 +96,8 @@ class UI_Funcionalidades:
     def instalar_dependencias(self):
         dep_installer = DependencyInstaller(self.args[3] + "requirements.txt")
         dep_installer.InstalarDependenciasNovasRequirements()
+
+    def selecionar_dir_raiz_dependencias(self):
+        dir_path = self.file_helper.selecionar_diretorio()
+        self.ui.dep_path_TextEdit.setPlainText(dir_path)
+        self.dep_dir = dir_path
