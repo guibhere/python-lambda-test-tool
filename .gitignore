@@ -10,3 +10,5 @@ __pycache__/lambda_context_mock.cpython-311.pyc
 *.sqlite
 *.pyc
 *.vsidx
+*.sqlite-journal
+.vscode/settings.json
