@@ -7,6 +7,7 @@ from pygments import highlight
 from pygments.lexers import JsonLexer
 from pygments.formatters import HtmlFormatter
 
+
 class UI_Funcionalidades:
     def __init__(self, ui: Ui_MainWindow, args):
         self.ui: Ui_MainWindow = ui
@@ -14,10 +15,10 @@ class UI_Funcionalidades:
         self.args = args
         self.event_dir = args[2]
         self.dep_dir = args[3]
-        
+
         self.init_values()
         self.connect_actions()
-        
+
     def init_values(self):
         self.ui.app_path_textEdit.setText(self.args[0])
         self.ui.handler_name_textEdit.setPlainText(self.args[1])
@@ -25,6 +26,10 @@ class UI_Funcionalidades:
             self.file_helper.list_json_files(self.event_dir)
         )
         self.ui.dep_path_TextEdit.setPlainText(self.dep_dir)
+
+        if self.ui.evento_comboBox.count() > 0:
+            self.ui.evento_comboBox.setCurrentIndex(0)
+            self.selecionar_event_json(0)
 
     def connect_actions(self):
         self.ui.select_lambda_pushButton.clicked.connect(self.selecionar_lambda)
@@ -43,12 +48,11 @@ class UI_Funcionalidades:
         )
 
     def selecionar_lambda(self):
-        try:    
+        try:
             file_path = self.file_helper.selecionar_lambda()
             self.ui.app_path_textEdit.setText(file_path)
         except Exception as e:
             print(str(e))
-            
 
     def selecionar_diretorio_eventos(self):
         try:
@@ -57,13 +61,20 @@ class UI_Funcionalidades:
             self.ui.evento_comboBox.clear()
             self.ui.evento_comboBox.addItems(eventos)
             self.event_dir = dir_path
+
+            if self.ui.evento_comboBox.count() > 0:
+                self.ui.evento_comboBox.setCurrentIndex(0)
+                self.selecionar_event_json(0)
+
         except Exception as e:
             print(str(e))
 
     def selecionar_event_json(self, index):
         try:
             selected_item = self.ui.evento_comboBox.itemText(index)
-            evento = self.file_helper.read_file(dir=self.event_dir, file_name=selected_item)
+            evento = self.file_helper.read_file(
+                dir=self.event_dir, file_name=selected_item
+            )
             formatted_html = highlight(evento, JsonLexer(), HtmlFormatter())
             self.ui.evento_textEdit.setHtml(formatted_html)
         except Exception as e:
