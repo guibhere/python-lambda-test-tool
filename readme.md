@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 No VsCode, configurar ou adicionar no projeto lambda a ser testado o seguinte launch.json¹:
 
-![Alt text](images/image.png)
+![Alt text](src/images/image.png)
 
 ```json
 {
@@ -73,18 +73,18 @@ Significado dos parâmetros:
 Após ajustar o launch.json do projeto que voce quer testar, basta executar pelo menu de debug o perfil que voce configurou no launch.json(F5 no vscode).
 - Exemplo de launch.json:
  
-![Alt text](images/launchjson.png)
+![Alt text](src/images/launchjson.png)
 - Menu Debug:
 
-![Alt text](images/debug.png)
+![Alt text](src/images/debug.png)
 
 - A tela então aparecera, basta preencher os campos de acordo com as seções anteriores e invocar sua lambda através do botão:
 
-![Alt text](images/tela.png)
+![Alt text](src/images/tela.png)
 
 - Por fim, o resultado da execução, juntamente com os logs, serão apresentados na textbox Logger:
   
-![Alt text](images/resultado.png)
+![Alt text](src/images/resultado.png)
 
 ## Extras 
 Esta interface foi gerada através do PyQt Designer. A ferramenta produz um código html da tela, que então pode ser convertido em uma classe python através do comando:

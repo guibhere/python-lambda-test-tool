@@ -1,6 +1,6 @@
 import subprocess
 import os
-from Utils.file_helper import File_Helper
+from src.Utils.file_helper import File_Helper
 
 
 class DependencyInstaller:

@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
-from Ui.lambda_test_tool_ui import Ui_MainWindow
+from src.Ui.lambda_test_tool_ui import Ui_MainWindow
 import ctypes
 
 myappid = u'python-lambda-test-tool' 

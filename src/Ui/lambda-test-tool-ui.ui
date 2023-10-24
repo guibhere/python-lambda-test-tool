@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1249</width>
-    <height>641</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,18 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Python Lambda Test Tool</string>
@@ -64,7 +76,7 @@
         <number>2</number>
        </property>
        <item>
-        <layout class="QGridLayout" name="_2" rowstretch="0,0,0,0" columnstretch="0,9,0">
+        <layout class="QGridLayout" name="_2" rowstretch="0,0,0,0" columnstretch="0,0,0">
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
@@ -80,34 +92,6 @@
          <property name="spacing">
           <number>2</number>
          </property>
-         <item row="0" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QPushButton" name="select_lambda_pushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>Selecionar Lambda Function</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
           <widget class="QLabel" name="label">
            <property name="toolTip">
@@ -146,6 +130,76 @@
            </property>
           </widget>
          </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="evento_comboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Payload/evento com o qual a lambda será invocada.</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QPushButton" name="select_dep_dir_pushButton">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Selecionar diretorio raiz</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QPushButton" name="select_lambda_pushButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Selecionar Lambda Function</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="toolTip">
+            <string>Nome do método handler da aplicação.</string>
+           </property>
+           <property name="text">
+            <string>Lambda Handler:</string>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="1">
           <widget class="QPlainTextEdit" name="dep_path_TextEdit">
            <property name="sizePolicy">
@@ -171,103 +225,6 @@
            </property>
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustIgnored</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="evento_comboBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>300</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Payload/evento com o qual a lambda será invocada.</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QPlainTextEdit" name="handler_name_textEdit">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>128</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>8</pointsize>
-            </font>
-           </property>
-           <property name="contextMenuPolicy">
-            <enum>Qt::NoContextMenu</enum>
-           </property>
-           <property name="toolTip">
-            <string>Nome do método handler da aplicação.</string>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="autoFillBackground">
-            <bool>false</bool>
-           </property>
-           <property name="lineWidth">
-            <number>1</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="toolTip">
-            <string>Nome do método handler da aplicação.</string>
-           </property>
-           <property name="text">
-            <string>Lambda Handler:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="toolTip">
-            <string>Payload/evento com o qual a lambda será invocada.</string>
-           </property>
-           <property name="text">
-            <string>Selecionar evento:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QPushButton" name="select_dep_dir_pushButton">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Selecionar diretorio raiz</string>
            </property>
           </widget>
          </item>
@@ -330,13 +287,99 @@ p, li { white-space: pre-wrap; }
            </property>
           </widget>
          </item>
+         <item row="2" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QPlainTextEdit" name="handler_name_textEdit">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>128</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Nome do método handler da aplicação.</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="toolTip">
+            <string>Payload/evento com o qual a lambda será invocada.</string>
+           </property>
+           <property name="text">
+            <string>Selecionar evento:</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
      </widget>
     </item>
+    <item row="2" column="0" alignment="Qt::AlignRight">
+     <widget class="QPushButton" name="invoke_lambda_pushButton">
+      <property name="minimumSize">
+       <size>
+        <width>233</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>Invocar a lambda de acordo com as definições.</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Invocar Lambda</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>48</width>
+        <height>48</height>
+       </size>
+      </property>
+      <property name="shortcut">
+       <string>Shift+F5</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0">
      <widget class="QSplitter" name="splitter">
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -385,7 +428,14 @@ p, li { white-space: pre-wrap; }
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="QTextEdit" name="evento_textEdit"/>
+         <widget class="QTextEdit" name="evento_textEdit">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>180</height>
+           </size>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -417,20 +467,10 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
+        <item row="0" column="0" rowspan="2">
          <widget class="QTextBrowser" name="logger_textBrowser">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="invoke_lambda_pushButton">
-          <property name="toolTip">
-           <string>Invocar a lambda de acordo com as definições.</string>
-          </property>
-          <property name="text">
-           <string>Invocar Lambda</string>
           </property>
          </widget>
         </item>
@@ -445,7 +485,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1249</width>
+     <width>800</width>
      <height>21</height>
     </rect>
    </property>

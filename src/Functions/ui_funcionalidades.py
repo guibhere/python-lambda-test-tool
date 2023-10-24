@@ -1,12 +1,13 @@
 import json
-from Utils.file_helper import File_Helper
-from Ui.lambda_test_tool_ui import Ui_MainWindow
-import lambda_teste_tool
-from Utils.dependency_installer import DependencyInstaller
+from src.Utils.file_helper import File_Helper
+from src.Ui.lambda_test_tool_ui import Ui_MainWindow
+from src.Functions.lambda_test_tool_invoke import Lambda_Test_Tool_Invoke
+from src.Utils.dependency_installer import DependencyInstaller
 from pygments import highlight
 from pygments.lexers import JsonLexer
 from pygments.formatters import HtmlFormatter
 
+lambda_invoke = Lambda_Test_Tool_Invoke()
 
 class UI_Funcionalidades:
     def __init__(self, ui: Ui_MainWindow, args):
@@ -114,7 +115,7 @@ class UI_Funcionalidades:
             params.append(self.ui.dep_path_TextEdit.toPlainText().strip())
             params.append("ui")
 
-            lambda_teste_tool.start(params)
+            lambda_invoke.start(params)
         except Exception as e:
             print("Ocorreu um erro no parsing do json: ", str(e))
 
