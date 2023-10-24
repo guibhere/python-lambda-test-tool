@@ -51,22 +51,23 @@ class UI_Funcionalidades:
     def selecionar_lambda(self):
         try:
             file_path = self.file_helper.selecionar_lambda()
-            self.ui.app_path_textEdit.setText(file_path)
+            if(file_path):
+                self.ui.app_path_textEdit.setText(file_path)
         except Exception as e:
             print(str(e))
 
     def selecionar_diretorio_eventos(self):
         try:
             dir_path = self.file_helper.selecionar_diretorio()
-            eventos = self.file_helper.list_json_files(dir_path)
-            self.ui.evento_comboBox.clear()
-            self.ui.evento_comboBox.addItems(eventos)
-            self.event_dir = dir_path
+            if(dir_path):
+                eventos = self.file_helper.list_json_files(dir_path)
+                self.ui.evento_comboBox.clear()
+                self.ui.evento_comboBox.addItems(eventos)
+                self.event_dir = dir_path
 
-            if self.ui.evento_comboBox.count() > 0:
-                self.ui.evento_comboBox.setCurrentIndex(0)
-                self.selecionar_event_json(0)
-
+                if self.ui.evento_comboBox.count() > 0:
+                    self.ui.evento_comboBox.setCurrentIndex(0)
+                    self.selecionar_event_json(0)
         except Exception as e:
             print(str(e))
 
@@ -129,7 +130,8 @@ class UI_Funcionalidades:
     def selecionar_dir_raiz_dependencias(self):
         try:
             dir_path = self.file_helper.selecionar_diretorio()
-            self.ui.dep_path_TextEdit.setPlainText(dir_path)
-            self.dep_dir = dir_path
+            if(dir_path):
+                self.ui.dep_path_TextEdit.setPlainText(dir_path)
+                self.dep_dir = dir_path
         except Exception as e:
             print(str(e))
