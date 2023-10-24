@@ -1,7 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
 from src.Extensions.MainWindowExtension import Ui_MainWindowExtensions
-from src.Utils.UI_logger import OutputRedirectorQt
 from src.Functions.ui_funcionalidades  import UI_Funcionalidades
 from src.Functions.lambda_test_tool_invoke import Lambda_Test_Tool_Invoke
 from PyQt5 import QtCore, QtWidgets
@@ -18,7 +17,6 @@ if __name__ == "__main__":
     else:
         MainWindow = QtWidgets.QMainWindow()
         ui = Ui_MainWindowExtensions(MainWindow)
-        sys.stdout = OutputRedirectorQt(ui.logger_textBrowser)
         functionality = UI_Funcionalidades(ui,args) 
         MainWindow.show()
         sys.exit(app.exec_())

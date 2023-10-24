@@ -1,4 +1,6 @@
 import json
+import sys
+from src.Utils.UI_logger import OutputRedirectorQt
 from src.Utils.file_helper import File_Helper
 from src.Ui.lambda_test_tool_ui import Ui_MainWindow
 from src.Functions.lambda_test_tool_invoke import Lambda_Test_Tool_Invoke
@@ -6,8 +8,10 @@ from src.Utils.dependency_installer import DependencyInstaller
 from pygments import highlight
 from pygments.lexers import JsonLexer
 from pygments.formatters import HtmlFormatter
+import threading
 
 lambda_invoke = Lambda_Test_Tool_Invoke()
+
 
 class UI_Funcionalidades:
     def __init__(self, ui: Ui_MainWindow, args):
@@ -16,6 +20,8 @@ class UI_Funcionalidades:
         self.args = args
         self.event_dir = args[2]
         self.dep_dir = args[3]
+        self.output = OutputRedirectorQt(ui.logger_textBrowser)
+        sys.stdout = self.output
 
         self.init_values()
         self.connect_actions()
@@ -47,11 +53,13 @@ class UI_Funcionalidades:
         self.ui.select_dep_dir_pushButton.clicked.connect(
             self.selecionar_dir_raiz_dependencias
         )
+        self.ui.terminal_logger_checkBox.clicked.connect(self.check_terminal_output)
+        self.ui.logger_textBrowser.textChanged.connect(self.scroll_botton)
 
     def selecionar_lambda(self):
         try:
             file_path = self.file_helper.selecionar_lambda()
-            if(file_path):
+            if file_path:
                 self.ui.app_path_textEdit.setText(file_path)
         except Exception as e:
             print(str(e))
@@ -59,7 +67,7 @@ class UI_Funcionalidades:
     def selecionar_diretorio_eventos(self):
         try:
             dir_path = self.file_helper.selecionar_diretorio()
-            if(dir_path):
+            if dir_path:
                 eventos = self.file_helper.list_json_files(dir_path)
                 self.ui.evento_comboBox.clear()
                 self.ui.evento_comboBox.addItems(eventos)
@@ -130,8 +138,45 @@ class UI_Funcionalidades:
     def selecionar_dir_raiz_dependencias(self):
         try:
             dir_path = self.file_helper.selecionar_diretorio()
-            if(dir_path):
+            if dir_path:
                 self.ui.dep_path_TextEdit.setPlainText(dir_path)
                 self.dep_dir = dir_path
         except Exception as e:
             print(str(e))
+
+    def check_terminal_output(self):
+        try:
+            if self.ui.terminal_logger_checkBox.isChecked():
+                self.output.terminal_logger = True
+            else:
+                self.output.terminal_logger = False
+        except Exception as e:
+            print(str(e))
+
+    def scroll_botton(self):
+        try:
+            self.ui.logger_textBrowser.verticalScrollBar().setValue(
+                self.ui.logger_textBrowser.verticalScrollBar().maximum()
+            )
+        except Exception as e:
+            print(str(e))
+            
+    def invoke_lambda(self):
+        try:
+            json_data = self.ui.evento_textEdit.toPlainText()
+            parsed_json = json.loads(json_data)
+
+            params = []
+            params.append(self.ui.app_path_textEdit.toPlainText().strip())
+            params.append(self.ui.handler_name_textEdit.toPlainText().strip())
+            params.append(json.dumps(parsed_json))
+            params.append(self.ui.dep_path_TextEdit.toPlainText().strip())
+            params.append("ui")
+            
+            if(self.ui.invoke_async_checkBox.isChecked()):
+                threading.Thread(target=lambda_invoke.start, args=(params,)).start()
+            else:
+                lambda_invoke.start(params)
+                
+        except Exception as e:
+            print("Ocorreu um erro no parsing do json: ", str(e))
