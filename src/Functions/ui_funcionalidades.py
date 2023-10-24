@@ -12,7 +12,6 @@ import threading
 
 lambda_invoke = Lambda_Test_Tool_Invoke()
 
-
 class UI_Funcionalidades:
     def __init__(self, ui: Ui_MainWindow, args):
         self.ui: Ui_MainWindow = ui
@@ -111,22 +110,6 @@ class UI_Funcionalidades:
             self.ui.evento_textEdit.setHtml(formatted_html)
         except Exception as e:
             print(str(e))
-
-    def invoke_lambda(self):
-        try:
-            json_data = self.ui.evento_textEdit.toPlainText()
-            parsed_json = json.loads(json_data)
-
-            params = []
-            params.append(self.ui.app_path_textEdit.toPlainText().strip())
-            params.append(self.ui.handler_name_textEdit.toPlainText().strip())
-            params.append(json.dumps(parsed_json))
-            params.append(self.ui.dep_path_TextEdit.toPlainText().strip())
-            params.append("ui")
-
-            lambda_invoke.start(params)
-        except Exception as e:
-            print("Ocorreu um erro no parsing do json: ", str(e))
 
     def instalar_dependencias(self):
         try:
