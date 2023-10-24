@@ -5,15 +5,9 @@ from Utils.file_helper import File_Helper
 from Utils.lambda_context_mock import lambda_context
 
 def main(args):
-    print("Argumentos", args)
-
-    print("Path da aplicação lambda: ", args[0])
-    print("Nome do metódo Handler: ", args[1])
-    print("Path dos eventos: ", args[2])
-    print("Path das dependencias da lambda: ", args[3])
-
     if args[4] == "debug":
-        event = File_Helper.carregar_json_file(args[2])
+        file_helper = File_Helper()
+        event = json.loads(file_helper.carregar_json_file(args[2]))
     elif args[4] == "ui":
         event = json.loads(args[2])
         

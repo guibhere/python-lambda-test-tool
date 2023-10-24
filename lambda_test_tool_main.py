@@ -1,17 +1,20 @@
 import sys
 from PyQt5 import QtWidgets
-from Ui.lambda_test_tool_ui import Ui_MainWindow
+from Extensions.MainWindowExtension import Ui_MainWindowExtensions
 from Utils.UI_logger import OutputRedirectorQt
 from ui_funcionalidades import UI_Funcionalidades
- 
+import lambda_teste_tool 
+
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
     args = sys.argv[1:]
-    sys.stdout = OutputRedirectorQt(ui.logger_textBrowser)
-    functionality = UI_Funcionalidades(ui,args)  # Create an instance of ButtonFunctionality
+    app = QtWidgets.QApplication(sys.argv)
     
-    MainWindow.show()
-    sys.exit(app.exec_())
+    if(args[4] == 'debug'):
+        lambda_teste_tool.start(args)
+    else:
+        MainWindow = QtWidgets.QMainWindow()
+        ui = Ui_MainWindowExtensions(MainWindow)
+        sys.stdout = OutputRedirectorQt(ui.logger_textBrowser)
+        functionality = UI_Funcionalidades(ui,args) 
+        MainWindow.show()
+        sys.exit(app.exec_())
