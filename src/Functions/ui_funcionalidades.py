@@ -10,9 +10,10 @@ from pygments.lexers import JsonLexer
 from pygments.formatters import HtmlFormatter
 import threading
 
-lambda_invoke = Lambda_Test_Tool_Invoke()
+
 
 class UI_Funcionalidades:
+    
     def __init__(self, ui: Ui_MainWindow, args):
         self.ui: Ui_MainWindow = ui
         self.file_helper = File_Helper()
@@ -24,6 +25,7 @@ class UI_Funcionalidades:
 
         self.init_values()
         self.connect_actions()
+        self.lambda_invoke = Lambda_Test_Tool_Invoke()
 
     def init_values(self):
         self.ui.app_path_textEdit.setText(self.args[0])
@@ -54,6 +56,7 @@ class UI_Funcionalidades:
         )
         self.ui.terminal_logger_checkBox.clicked.connect(self.check_terminal_output)
         self.ui.logger_textBrowser.textChanged.connect(self.scroll_botton)
+        self.ui.limpar_cache_modulos_checkBox.clicked.connect(self.limpar_cache_modulos)
 
     def selecionar_lambda(self):
         try:
@@ -144,6 +147,13 @@ class UI_Funcionalidades:
         except Exception as e:
             print(str(e))
             
+    def limpar_cache_modulos(self):
+        try:
+            if(self.ui.limpar_cache_modulos_checkBox.isChecked()):
+                self.lambda_invoke.clear_modules()
+        except Exception as e:
+            print(str(e))
+            
     def invoke_lambda(self):
         try:
             json_data = self.ui.evento_textEdit.toPlainText()
@@ -155,11 +165,12 @@ class UI_Funcionalidades:
             params.append(json.dumps(parsed_json))
             params.append(self.ui.dep_path_TextEdit.toPlainText().strip())
             params.append("ui")
+            params.append(self.ui.limpar_cache_modulos_checkBox.isChecked())
             
             if(self.ui.invoke_async_checkBox.isChecked()):
-                threading.Thread(target=lambda_invoke.start, args=(params,)).start()
+                threading.Thread(target=self.lambda_invoke.start, args=(params,)).start()
             else:
-                lambda_invoke.start(params)
+                self.lambda_invoke.start(params)
                 
         except Exception as e:
             print("Ocorreu um erro no parsing do json: ", str(e))

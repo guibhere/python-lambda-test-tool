@@ -472,7 +472,39 @@ p, li { white-space: pre-wrap; }
        <string>Invoke</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_5">
-       <item row="0" column="1">
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>1</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="invoke_async_checkBox">
+         <property name="toolTip">
+          <string>Opção experimental:  permite a invocação da lambda de forma assíncrona, liberando a thread principal da tela.</string>
+         </property>
+         <property name="text">
+          <string>Invocação assíncrona</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="limpar_cache_modulos_checkBox">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Limpa o cache de módulos entre execuções, permitindo a edição de dependências entre invocações.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Limpar module cache entre execuções</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" rowspan="3">
         <widget class="QPushButton" name="invoke_lambda_pushButton">
          <property name="minimumSize">
           <size>
@@ -497,16 +529,6 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="shortcut">
           <string>Shift+F5</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="invoke_async_checkBox">
-         <property name="toolTip">
-          <string>Opção experimental:  permite a invocação da lambda de forma assíncrona, liberando a thread principal da tela.</string>
-         </property>
-         <property name="text">
-          <string>Invocação assíncrona</string>
          </property>
         </widget>
        </item>

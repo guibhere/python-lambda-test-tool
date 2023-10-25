@@ -4,7 +4,6 @@ import sys
 from src.Utils.file_helper import File_Helper
 from src.Utils.lambda_context_mock import lambda_context
 
-
 class Lambda_Test_Tool_Invoke:
     def __init__(self):
         self.base_modules = set(sys.modules)
@@ -22,7 +21,7 @@ class Lambda_Test_Tool_Invoke:
 
         module = self.import_lambda(args[0], args[1])
 
-        if not self.loaded_modules:
+        if (not self.loaded_modules) and (args[5]):
             self.loaded_modules.update(sys.modules)
 
         handler = getattr(module, args[1])
@@ -31,7 +30,8 @@ class Lambda_Test_Tool_Invoke:
 
         print("Lambda executada com sucesso, resultado:", resultado)
 
-        self.clear_modules()
+        if(args[5]):
+            self.clear_modules()
 
     def import_lambda(self, file_path, handler):
         spec = importlib.util.spec_from_file_location(handler, file_path)
@@ -41,8 +41,12 @@ class Lambda_Test_Tool_Invoke:
         return module
 
     def clear_modules(self):
-        for modulo in self.loaded_modules - self.base_modules:
-            sys.modules.pop(modulo)
+        try:
+            for modulo in self.loaded_modules - self.base_modules:
+                sys.modules.pop(modulo)
+        except Exception as e:
+            print("Ocorreu um erro ao limpar o cache de módulos: ",e)
+            pass
 
     def start(self, args):
         try:
