@@ -41,12 +41,11 @@ class Lambda_Test_Tool_Invoke:
         return module
 
     def clear_modules(self):
-        try:
             for modulo in self.loaded_modules - self.base_modules:
-                sys.modules.pop(modulo)
-        except Exception as e:
-            print("Ocorreu um erro ao limpar o cache de módulos: ",e)
-            pass
+                try:
+                    sys.modules.pop(modulo)
+                except Exception as e:
+                    continue
 
     def start(self, args):
         try:
