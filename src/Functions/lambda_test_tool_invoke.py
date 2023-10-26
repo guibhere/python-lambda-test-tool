@@ -21,8 +21,8 @@ class Lambda_Test_Tool_Invoke:
 
         module = self.import_lambda(args[0], args[1])
 
-        if (not self.loaded_modules) and (args[5]):
-            self.loaded_modules.update(sys.modules)
+        #if (not self.loaded_modules) and (args[5]):
+        self.loaded_modules.update(sys.modules)
 
         handler = getattr(module, args[1])
 
